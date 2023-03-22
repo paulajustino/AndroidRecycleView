@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.paulajustino.androidrecycleview.databinding.ContactListItemBinding
 
-class ContactListAdapter : RecyclerView.Adapter<ContactListAdapter.ContactListItemViewHolder>() {
+class ContactListAdapter(
+    val contactListItems: MutableList<ContactInfo>
+) : RecyclerView.Adapter<ContactListAdapter.ContactListItemViewHolder>() {
 
     // metodo responsavel por criar a view de um item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactListItemViewHolder {
@@ -18,12 +20,13 @@ class ContactListAdapter : RecyclerView.Adapter<ContactListAdapter.ContactListIt
 
     // metodo responsavel por preencher a view de um item com dados
     override fun onBindViewHolder(holder: ContactListItemViewHolder, position: Int) {
-        holder.contactName.text = "Nome Default"
-        holder.contactPhone.text = "Telefone Default"
+        val item = contactListItems[position]
+        holder.contactName.text = item.name
+        holder.contactPhone.text = item.phone
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return contactListItems.size
     }
 
     class ContactListItemViewHolder(binding: ContactListItemBinding) :
