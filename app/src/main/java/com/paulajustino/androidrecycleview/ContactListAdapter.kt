@@ -1,18 +1,18 @@
 package com.paulajustino.androidrecycleview
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.paulajustino.androidrecycleview.databinding.ContactListItemBinding
 
 class ContactListAdapter : RecyclerView.Adapter<ContactListAdapter.ContactListItemViewHolder>() {
 
     // metodo responsavel por criar a view de um item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactListItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.contact_list_item, parent, false
+        val view = ContactListItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
         )
+
         return ContactListItemViewHolder(view)
     }
 
@@ -26,8 +26,9 @@ class ContactListAdapter : RecyclerView.Adapter<ContactListAdapter.ContactListIt
         return 1
     }
 
-    class ContactListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var contactName = view.findViewById<TextView>(R.id.contact_name)
-        var contactPhone = view.findViewById<TextView>(R.id.contact_phone)
+    class ContactListItemViewHolder(binding: ContactListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        var contactName = binding.contactName
+        var contactPhone = binding.contactPhone
     }
 }
