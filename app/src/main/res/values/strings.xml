@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidRecycleView</string>
+    <string name="list_title">Lista de Contatos</string>
 </resources>
